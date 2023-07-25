@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6vf3frjo2ick"]
+
+[ext_resource type="Script" path="res://entry.gd" id="1_4ye2o"]
+
+[node name="Entry" type="Node"]
+script = ExtResource("1_4ye2o")
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 1921.0
+offset_bottom = 1076.0
+
+[node name="join" type="Button" parent="Panel"]
+layout_mode = 2
+offset_left = 1065.0
+offset_top = 441.0
+offset_right = 1409.0
+offset_bottom = 568.0
+theme_override_font_sizes/font_size = 65
+text = "Join"
+
+[node name="TextEdit" type="TextEdit" parent="Panel"]
+layout_mode = 0
+offset_left = 376.0
+offset_top = 441.0
+offset_right = 1062.0
+offset_bottom = 569.0
+theme_override_font_sizes/font_size = 65
+text = "127.0.0.1"
+placeholder_text = "127.0.0.1"
+
+[node name="host" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 820.0
+offset_top = 862.0
+offset_right = 949.0
+offset_bottom = 944.0
+theme_override_font_sizes/font_size = 54
+text = "Host"

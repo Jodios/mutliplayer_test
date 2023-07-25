@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://dfgpcnxdgb7c6"]
+
+[ext_resource type="Script" path="res://shared/character.gd" id="1_hsgnp"]
+[ext_resource type="Texture2D" uid="uid://bmx2bck60vak5" path="res://assets/user_sprite.png" id="2_2b0f1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lm6s5"]
+size = Vector2(26, 29)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_iovg7"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath("UserSprite:rotation")
+properties/1/spawn = true
+properties/1/sync = true
+properties/2/path = NodePath(".:sync_score")
+properties/2/spawn = true
+properties/2/sync = true
+
+[node name="character" type="CharacterBody2D"]
+top_level = true
+script = ExtResource("1_hsgnp")
+
+[node name="UserSprite" type="Sprite2D" parent="."]
+position = Vector2(16, 16)
+texture = ExtResource("2_2b0f1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(16, 14.5)
+shape = SubResource("RectangleShape2D_lm6s5")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_iovg7")
+visibility_update_mode = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="Label" type="Label" parent="."]
+offset_left = -47.0
+offset_top = -23.0
+offset_right = 79.0
+horizontal_alignment = 1
+
+[node name="scorelabel" type="Label" parent="."]
+offset_left = -48.0
+offset_top = 29.0
+offset_right = 79.0
+offset_bottom = 52.0
+horizontal_alignment = 1
