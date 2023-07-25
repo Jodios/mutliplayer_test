@@ -1,13 +1,15 @@
 extends Node2D
 
 var peer = ENetMultiplayerPeer.new()
+var PORT = 80
+var ADDRESS = "testing.jodios.com"
 
 func _ready():
 	if ServerData.LOCALHOST:
 		get_tree().change_scene_to_file("res://server/server.tscn")
 	else:
-		print("CONNECTING TO ", ServerData.ADDRESS)
-		var err = peer.create_client(ServerData.ADDRESS, 80)
+		print("CONNECTING TO ", ADDRESS, ":", PORT)
+		var err = peer.create_client(ADDRESS, PORT)
 		if err != OK :
 			print("FAILED TO CREATE CLIENT")
 		multiplayer.multiplayer_peer = peer

@@ -10,6 +10,7 @@ func _ready():
 	multiplayer.multiplayer_peer = peer
 	multiplayer.peer_connected.connect(add_player)
 	multiplayer.peer_disconnected.connect(remove_player)
+	print("RUNNING SERVER ON PORT ", ServerData.PORT)
 	if ServerData.LOCALHOST:
 		add_player(multiplayer.get_unique_id())
 		
