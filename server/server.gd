@@ -3,7 +3,10 @@ extends Node2D
 var peer = ENetMultiplayerPeer.new()
 
 func _ready():
-	peer.create_server(ServerData.PORT, 20)
+	print("CREATING SERVER")
+	var err = peer.create_server(ServerData.PORT, 20)
+	if err != OK :
+		printerr("FAILED TO CREATE SERVER")
 	multiplayer.multiplayer_peer = peer
 	multiplayer.peer_connected.connect(add_player)
 	multiplayer.peer_disconnected.connect(remove_player)
@@ -17,6 +20,7 @@ func add_player(id):
 		call_deferred("add_child", player)
 
 func remove_player(id):
+	print("removing player ", id)
 	for n in get_children():
 		if n.name == str(id):
 			n.queue_free()
