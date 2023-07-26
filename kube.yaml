@@ -19,6 +19,7 @@ spec:
           imagePullPolicy: Always
           ports:
           - containerPort: 8080
+            protocol: UDP
       terminationGracePeriodSeconds: 30
       dnsPolicy: ClusterFirst
 ---
@@ -28,13 +29,52 @@ metadata:
   name: test
   namespace: prod
 spec:
-  type: ClusterIP
+  type: NodePort
   ports:
+    # - port: 8080
+    #   targetPort: 8080
+    #   protocol: TCP
     - port: 8080
       targetPort: 8080
       protocol: UDP
+      nodePort: 30000
   selector:
     app: test
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: fogload-test
+  namespace: prod
+spec:
+  type: NodePort
+  ports:
+    # - port: 8080
+    #   targetPort: 8080
+    #   protocol: TCP
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      nodePort: 30001
+  selector:
+    app: fogload
+# ---
+# kind: Service
+# apiVersion: v1
+# metadata:
+#   name: test
+#   namespace: prod
+# spec:
+#   type: ClusterIP
+#   ports:
+#     # - port: 8080
+#     #   targetPort: 8080
+#     #   protocol: TCP
+#     - port: 8080
+#       targetPort: 8080
+#       protocol: UDP
+#   selector:
+#     app: test
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -52,5 +92,5 @@ spec:
           service:
             name: test
             port:
-              number: 80
+              number: 8080
         pathType: ImplementationSpecific

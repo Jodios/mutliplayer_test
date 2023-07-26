@@ -25,7 +25,7 @@ offset_top = 441.0
 offset_right = 1062.0
 offset_bottom = 569.0
 theme_override_font_sizes/font_size = 65
-text = "127.0.0.1"
+text = "173.230.149.182"
 placeholder_text = "127.0.0.1"
 
 [node name="host" type="Button" parent="Panel"]

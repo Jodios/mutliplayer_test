@@ -1,6 +1,6 @@
 extends Node
 
-var PORT:int = 8080
+var PORT:int = 30000
 var ADDRESS: String
 var LOCALHOST: bool = false
 var SPAWN_POINTS = [
